@@ -1,1 +1,1 @@
-Author: David Edwards
+Author: David Edwards and Katie Trout
