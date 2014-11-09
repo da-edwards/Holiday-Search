@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sphinx:docset>
+	<sphinx:schema>
+		<sphinx:field name="name"/>
+		<sphinx:attr name="age" type="int" bits="16"/>
+	</sphinx:schema>
+	<sphinx:document id="1">
+		<name>Dave</name>
+		<age>32</age>
+	</sphinx:document>
+	<sphinx:document id="2">
+		<name>Katie</name>
+		<age>35</age>
+	</sphinx:document>
+</sphinx:docset>

@@ -46,3 +46,15 @@ obj
 packages
 
 *.cache
+*.spa
+*.spd
+*.spe
+*.sph
+*.spi
+*.spk
+*.spl
+*.spm
+*.spp
+*.sps
+*.log
+*.pid
