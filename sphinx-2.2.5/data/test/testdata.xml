@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sphinx:docset>
 	<sphinx:schema>
-		<sphinx:field name="name"/>
-		<sphinx:attr name="age" type="int" bits="16"/>
+		<sphinx:field name="location_tags"/>
+		<sphinx:field name="accommodation_name"/>
+		<sphinx:attr name="s_accommodation_name" type="string"/>
+		<sphinx:attr name="rating" type="int" bits="8"/>
+		<sphinx:attr name="availability" type="multi"/>
 	</sphinx:schema>
 	<sphinx:document id="1">
-		<name>Dave</name>
-		<age>32</age>
+		<accommodation_name>Hotel Dave</accommodation_name>
+		<s_accommodation_name>Hotel Dave</s_accommodation_name>
+		<rating>4</rating>
+		<availability>
+			<attr>9191</attr>
+			<attr>9291</attr>
+		</availability>
 	</sphinx:document>
 	<sphinx:document id="2">
-		<name>Katie</name>
-		<age>35</age>
+		<accommodation_name>Hotel Katie</accommodation_name>
+		<s_accommodation_name>Hotel Katie</s_accommodation_name>
+		<rating>5</rating>
+		<availability>
+			<attr>9291</attr>
+			<attr>9391</attr>
+		</availability>
 	</sphinx:document>
 </sphinx:docset>
