@@ -29,6 +29,8 @@ namespace HolidaySearch.Search
 
         public string Location { get; set; }
 
+        public byte? MinimumRating { get; set; }
+
         public bool UseCombinedSearchFields { get; set; }
     }
 }

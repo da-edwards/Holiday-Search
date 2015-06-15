@@ -8,8 +8,10 @@ namespace HolidaySearch.Search
 {
     public class SearchResult
     {
-        public string AccommodationName { get; set; }
+        public string AccommodationName { get; internal set; }
 
-        public long Id { get; set; }
+        public long Id { get; internal set; }
+
+        public string Location { get; internal set; }
     }
 }

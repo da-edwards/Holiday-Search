@@ -40,7 +40,7 @@ namespace HolidaySearch.Search.Repositories
             }
 
             var searchQuery = "SELECT * FROM " + indexName + " WHERE ";
-            var firstClause = true;
+            var firstClause = true; // do we want to add an AND?
 
             // Add dates
             if (searchParameters.Dates.Any())
@@ -50,6 +50,13 @@ namespace HolidaySearch.Search.Repositories
                     searchQuery += (firstClause ? string.Empty : " AND ") + "availability = " + DaysSinceMillenium(date);
                     firstClause = false;
                 }
+            }
+
+            // Add minimum rating
+            if (searchParameters.MinimumRating.HasValue)
+            {
+                searchQuery += (firstClause ? string.Empty : " AND ") + "rating >= " + searchParameters.MinimumRating.Value;
+                firstClause = false;
             }
 
             // Add free text
@@ -98,7 +105,8 @@ namespace HolidaySearch.Search.Repositories
                     searchResults.Add(new SearchResult
                     {
                         Id = r.GetInt64(0),
-                        AccommodationName = r.GetString(1)
+                        AccommodationName = r.GetString(1),
+                        Location = r.GetString(2)
                     });
                 }
             }

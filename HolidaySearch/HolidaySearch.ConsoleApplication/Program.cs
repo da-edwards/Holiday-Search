@@ -29,8 +29,9 @@ namespace HolidaySearch.ConsoleApplication
             var searchResults = _searchRepository.Search(
                 new SearchParameters
                 {
-                    Accomodation = "dave",
+                    Accomodation = "siem",
                     Dates = new List<DateTime> { DateTime.Now.AddDays(1) },
+                    MinimumRating = 5,
                     UseCombinedSearchFields = true
                 }).ToList();
 
@@ -43,7 +44,7 @@ namespace HolidaySearch.ConsoleApplication
 
             foreach (var searchResult in searchResults)
             {
-                Console.WriteLine(searchResult.AccommodationName);
+                Console.WriteLine(searchResult.AccommodationName + ", " + searchResult.Location);
             }
         }
     }
