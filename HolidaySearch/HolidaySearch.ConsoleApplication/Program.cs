@@ -44,7 +44,7 @@ namespace HolidaySearch.ConsoleApplication
 
             foreach (var searchResult in searchResults)
             {
-                Console.WriteLine(searchResult.AccommodationName + ", " + searchResult.Location);
+                Console.WriteLine(searchResult.AccommodationName + ", " + searchResult.Location + ": " + searchResult.Rating);
             }
         }
     }

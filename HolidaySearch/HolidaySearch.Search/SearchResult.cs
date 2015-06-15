@@ -13,5 +13,7 @@ namespace HolidaySearch.Search
         public long Id { get; internal set; }
 
         public string Location { get; internal set; }
+
+        public short Rating { get; internal set; }
     }
 }

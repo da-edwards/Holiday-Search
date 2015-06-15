@@ -106,7 +106,8 @@ namespace HolidaySearch.Search.Repositories
                     {
                         Id = r.GetInt64(0),
                         AccommodationName = r.GetString(1),
-                        Location = r.GetString(2)
+                        Location = r.GetString(2),
+                        Rating = r.GetInt16(3)
                     });
                 }
             }
