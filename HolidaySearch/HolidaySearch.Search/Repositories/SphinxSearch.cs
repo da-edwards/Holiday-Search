@@ -95,7 +95,7 @@ namespace HolidaySearch.Search.Repositories
             {
                 return null;
             }
-
+            ////throw new NotImplementedException(searchQuery);
             var searchResults = new List<SearchResult>();
 
             // Connect to sphinx

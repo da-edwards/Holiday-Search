@@ -12,6 +12,17 @@ namespace HolidaySearch.Website.Controllers
 {
     public class SearchController : Controller
     {
+        private readonly ISearch _searchRepository;
+
+        public SearchController()
+        {
+            _searchRepository = Waiter.GetInstance<ISearch>();
+        }
+
+        /// <summary>
+        /// Returns the search form
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {
@@ -24,6 +35,11 @@ namespace HolidaySearch.Website.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Returns the search results
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Results(BasicSearchViewModel model)
         {
@@ -32,17 +48,33 @@ namespace HolidaySearch.Website.Controllers
                 BasicSearchViewModel = model
             };
 
-            ISearch searchRepository = Waiter.GetInstance<ISearch>();
-
             var resultList = new List<SearchResultViewModel>();
 
-            var searchResults = searchRepository.Search(
+            var dates = new List<DateTime>();
+
+            // Add all dates to the search parameters
+            // TODO: move this in to the search repository
+            if (model.StartDate != default(DateTime))
+            {
+                dates.Add(model.StartDate.Date);    // add the first date
+
+                // Add all other dates
+                for (int i = 1; i < model.Nights; i++)
+                {
+                    dates.Add(model.StartDate.Date.AddDays(i));
+                }
+            }
+
+            // Get the search results
+            var searchResults = _searchRepository.Search(
                 new SearchParameters
                 {
                     Accomodation = model.SearchTerm,
+                    Dates = dates,
                     UseCombinedSearchFields = true
                 });
 
+            // If not null, get them
             if (searchResults != null)
             {
                 foreach (var searchResult in searchResults)
