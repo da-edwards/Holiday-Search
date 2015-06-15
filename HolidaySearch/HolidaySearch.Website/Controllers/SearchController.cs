@@ -14,8 +14,12 @@ namespace HolidaySearch.Website.Controllers
     {
         private readonly ISearch _searchRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchController"/> class.
+        /// </summary>
         public SearchController()
         {
+            // TODO: pass in ISearch to constructor
             _searchRepository = Waiter.GetInstance<ISearch>();
         }
 
@@ -57,7 +61,7 @@ namespace HolidaySearch.Website.Controllers
                     Accomodation = model.SearchTerm,
                     Dates = model.StartDate == default(DateTime) ? null : new List<DateTime> { model.StartDate },
                     NumberOfNights = model.Nights,
-                    UseCombinedSearchFields = true
+                    UseCombinedSearchFields = true  // single search box mode
                 });
 
             // If not null, get them
