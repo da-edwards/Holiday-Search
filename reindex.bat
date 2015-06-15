@@ -1,0 +1,1 @@
+C:\Development\Holiday-Search\sphinx-2.2.5\bin\indexer -c C:\Development\Holiday-Search\sphinx-2.2.5\sphinx.test.conf --all --rotate

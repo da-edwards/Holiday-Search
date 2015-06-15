@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+}
+
+@model BasicSearchViewModel
+
+@using (Html.BeginForm("Results", "Search", FormMethod.Get))
+{
+    <fieldset>
+        <div>
+            @Html.LabelFor(x => x.SearchTerm, Site.LabelSearchTerm)
+            @Html.TextBoxFor(x => x.SearchTerm)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.StartDate, Site.LabelStartDate)
+            @Html.TextBoxFor(x => x.StartDate, new { type = "date" })
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Nights, Site.LabelNights)
+            @Html.TextBoxFor(x => x.Nights, new { type = "number", min = "1" })
+        </div>
+    </fieldset>
+    
+    <div><input type="submit" value="@Site.SubmitSearch" /></div>
+}

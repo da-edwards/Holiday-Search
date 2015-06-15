@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace HolidaySearch.Search
+namespace HolidaySearch.Website.ViewModels
 {
-    public class SearchResult
+    public class SearchResultViewModel
     {
         public string AccommodationName { get; set; }
 

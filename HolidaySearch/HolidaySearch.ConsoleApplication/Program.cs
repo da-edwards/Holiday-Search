@@ -1,4 +1,5 @@
-﻿using HolidaySearch.Search;
+﻿using HolidaySearch.IOC;
+using HolidaySearch.Search;
 using HolidaySearch.Search.Repositories;
 using StructureMap;
 using System;
@@ -11,23 +12,33 @@ namespace HolidaySearch.ConsoleApplication
 {
     class Program
     {
-        private static ISearch _searchRepository;
+        private static readonly ISearch _searchRepository;
         
         static Program()
         {
             ObjectFactory.Initialize(x =>
-                {
-                    x.For<ISearch>().Use<SphinxSearch>();
-                });
+            {
+                x.For<ISearch>().Use<SphinxSearch>();
+            });
 
-            _searchRepository = ObjectFactory.GetInstance<ISearch>();
+            _searchRepository = Waiter.GetInstance<ISearch>();
         }
 
         static void Main()
         {
-            var searchResults = _searchRepository.Search("Dave").ToList();
+            var searchResults = _searchRepository.Search(new SearchParameters { Dates = new List<DateTime> { DateTime.Now.AddDays(1) } }).ToList();
 
-            Console.WriteLine(searchResults.First().Age);
+            if (!searchResults.Any())
+            {
+                Console.WriteLine("No results found");
+
+                Environment.Exit(0);
+            }
+
+            foreach (var searchResult in searchResults)
+            {
+                Console.WriteLine(searchResult.AccommodationName);
+            }
         }
     }
 }

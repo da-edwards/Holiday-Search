@@ -1,0 +1,16 @@
+﻿@model SearchResultsViewModel
+
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+
+@Html.Partial("Index", Model.BasicSearchViewModel)
+
+<ul>
+    @foreach (var searchResult in Model.SearchResults)
+    {
+        <li>@searchResult.AccommodationName</li>
+    }
+</ul>

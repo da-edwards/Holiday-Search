@@ -3,26 +3,32 @@
 	<sphinx:schema>
 		<sphinx:field name="location_tags"/>
 		<sphinx:field name="accommodation_name"/>
-		<sphinx:attr name="s_accommodation_name" type="string"/>
+		<sphinx:field name="location_name"/>
+		<sphinx:attr name="d_accommodation_name" type="string"/>
+		<sphinx:attr name="d_location_name" type="string"/>
 		<sphinx:attr name="rating" type="int" bits="8"/>
 		<sphinx:attr name="availability" type="multi"/>
 	</sphinx:schema>
 	<sphinx:document id="1">
 		<accommodation_name>Hotel Dave</accommodation_name>
-		<s_accommodation_name>Hotel Dave</s_accommodation_name>
+		<location_name>Istanbul</location_name>
+		<d_accommodation_name>Hotel Dave</d_accommodation_name>
+		<d_location_name>Istanbul</d_location_name>
 		<rating>4</rating>
 		<availability>
-			<attr>9191</attr>
-			<attr>9291</attr>
+			<attr>5644</attr>
+			<attr>5645</attr>
 		</availability>
 	</sphinx:document>
 	<sphinx:document id="2">
 		<accommodation_name>Hotel Katie</accommodation_name>
-		<s_accommodation_name>Hotel Katie</s_accommodation_name>
+		<location_name>Siem Reap</location_name>
+		<d_accommodation_name>Hotel Katie</d_accommodation_name>
+		<d_location_name>Siem Reap</d_location_name>
 		<rating>5</rating>
 		<availability>
-			<attr>9291</attr>
-			<attr>9391</attr>
+			<attr>5645</attr>
+			<attr>5646</attr>
 		</availability>
 	</sphinx:document>
 </sphinx:docset>

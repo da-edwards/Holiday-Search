@@ -8,6 +8,6 @@ namespace HolidaySearch.Search.Repositories
 {
     public interface ISearch
     {
-        IEnumerable<SearchResult> Search(string searchTerm);
+        IEnumerable<SearchResult> Search(SearchParameters searchParameters);
     }
 }
