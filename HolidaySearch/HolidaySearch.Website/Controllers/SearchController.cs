@@ -36,18 +36,23 @@ namespace HolidaySearch.Website.Controllers
 
             var resultList = new List<SearchResultViewModel>();
 
-            foreach (var searchResult in searchRepository.Search(
+            var searchResults = searchRepository.Search(
                 new SearchParameters
                 {
                     Accomodation = model.SearchTerm,
                     UseCombinedSearchFields = true
-                }))
-            {
-                resultList.Add(new SearchResultViewModel
-                {
-                    AccommodationName = searchResult.AccommodationName,
-                    Id = searchResult.Id
                 });
+
+            if (searchResults != null)
+            {
+                foreach (var searchResult in searchResults)
+                {
+                    resultList.Add(new SearchResultViewModel
+                    {
+                        AccommodationName = searchResult.AccommodationName,
+                        Id = searchResult.Id
+                    });
+                }
             }
 
             viewModel.SearchResults = resultList.AsEnumerable();

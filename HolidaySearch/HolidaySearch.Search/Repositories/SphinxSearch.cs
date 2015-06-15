@@ -88,8 +88,14 @@ namespace HolidaySearch.Search.Repositories
                 }
 
                 searchQuery += "')";
+                firstClause = false;
             }
-            
+
+            if (firstClause)
+            {
+                return null;
+            }
+
             var searchResults = new List<SearchResult>();
 
             // Connect to sphinx
