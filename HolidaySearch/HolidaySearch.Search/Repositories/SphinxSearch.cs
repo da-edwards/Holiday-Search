@@ -80,7 +80,7 @@ namespace HolidaySearch.Search.Repositories
                         addSpace = true;
                     }
 
-                    // Location name
+                    // Location
                     if (!string.IsNullOrEmpty(searchParameters.Location))
                     {
                         searchQuery += (addSpace ? " " : string.Empty) + "@location_name " + searchParameters.Location;
@@ -92,6 +92,7 @@ namespace HolidaySearch.Search.Repositories
             
             var searchResults = new List<SearchResult>();
 
+            // Connect to sphinx
             using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["Sphinx"].ConnectionString))
             {
                 connection.Open();
@@ -100,6 +101,7 @@ namespace HolidaySearch.Search.Repositories
                 
                 var r = cmd.ExecuteReader();
 
+                // Get results
                 while (r.Read())
                 {
                     searchResults.Add(new SearchResult
@@ -111,53 +113,6 @@ namespace HolidaySearch.Search.Repositories
                     });
                 }
             }
-
-            ////using (ConnectionBase connection = new PersistentTcpConnection(
-            ////    ConfigurationManager.AppSettings["SphinxHost"],
-            ////    Convert.ToInt32(ConfigurationManager.AppSettings["SphinxPort"])))
-            ////{
-                
-
-            ////    ////SearchQuery query = new SearchQuery(searchTerm);
-            ////    ////////query.AttributeFilters.Add("availability", new List<int> { 9391 }, true);
-            ////    ////query.AttributeFilters.Add(new Sphinx.Client.Commands.Attributes.Filters.AttributeFilterBase
-            ////    ////    {
-            ////    ////        FilterType = AttributeFilterType.RangeInt32,
-            ////    ////        Exclude = true,
-            ////    ////        Name = "availability"
-            ////    ////    });
-
-            ////    ////query.MatchMode = MatchMode.Extended2;
-
-            ////    ////query.Indexes.Add(ConfigurationManager.AppSettings["SphinxIndexName"]);
-            ////    ////query.Limit = Convert.ToInt32(ConfigurationManager.AppSettings["SphinxPageLimit"]);
-
-            ////    ////SearchCommand command = new SearchCommand(connection);
-            ////    ////command.QueryList.Add(query);
-
-            ////    ////try
-            ////    ////{
-            ////    ////    command.Execute();
-
-            ////    ////    foreach (SearchQueryResult result in command.Result.QueryResults)
-            ////    ////    {
-            ////    ////        foreach (Match match in result.Matches)
-            ////    ////        {
-            ////    ////            searchResults.Add(new SearchResult
-            ////    ////            {
-            ////    ////                AccommodationName = match.AttributesValues["s_accommodation_name"].GetValue().ToString(),
-            ////    ////                Id = match.DocumentId
-            ////    ////            });
-            ////    ////        }
-            ////    ////    }
-            ////    ////}
-            ////    ////catch (Sphinx.Client.Common.QueryErrorException)
-            ////    ////{
-            ////    ////    throw;
-            ////    ////    //TODO: log
-            ////    ////}
-                
-            ////}
 
             return searchResults.AsEnumerable();
         }
