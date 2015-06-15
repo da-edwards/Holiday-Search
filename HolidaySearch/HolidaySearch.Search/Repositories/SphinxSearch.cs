@@ -43,7 +43,7 @@ namespace HolidaySearch.Search.Repositories
             var firstClause = true; // do we want to add an AND?
 
             // Add dates
-            if (searchParameters.Dates.Any())
+            if (searchParameters.Dates != null && searchParameters.Dates.Any())
             {
                 foreach (var date in searchParameters.Dates)
                 {

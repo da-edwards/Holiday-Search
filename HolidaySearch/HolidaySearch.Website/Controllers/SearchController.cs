@@ -1,4 +1,5 @@
 ﻿using HolidaySearch.IOC;
+using HolidaySearch.Search;
 using HolidaySearch.Search.Repositories;
 using HolidaySearch.Website.ViewModels;
 using System;
@@ -35,7 +36,12 @@ namespace HolidaySearch.Website.Controllers
 
             var resultList = new List<SearchResultViewModel>();
 
-            foreach (var searchResult in searchRepository.Search(model.SearchTerm))
+            foreach (var searchResult in searchRepository.Search(
+                new SearchParameters
+                {
+                    Accomodation = model.SearchTerm,
+                    UseCombinedSearchFields = true
+                }))
             {
                 resultList.Add(new SearchResultViewModel
                 {

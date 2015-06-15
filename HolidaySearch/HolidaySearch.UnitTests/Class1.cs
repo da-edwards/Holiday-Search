@@ -13,7 +13,7 @@ namespace HolidaySearch.UnitTests
 {
     public class TestSphinxSearch : ISearch
     {
-        public IEnumerable<SearchResult> Search(string searchTerm)
+        public IEnumerable<SearchResult> Search(SearchParameters searchParameters)
         {
             List<SearchResult> results = new List<SearchResult>();
 
@@ -41,7 +41,11 @@ namespace HolidaySearch.UnitTests
         {
             var search = Waiter.GetInstance<ISearch>();
 
-            Assert.AreEqual(1, search.Search("anything").Count());
+            Assert.AreEqual(1, search.Search(
+                new SearchParameters
+                {
+                    Accomodation = "anything"
+                }).Count());
         }
     }
 }
