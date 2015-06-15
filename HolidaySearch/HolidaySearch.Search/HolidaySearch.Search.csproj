@@ -60,7 +60,7 @@
     <Compile Include="Repositories\ISearch.cs" />
     <Compile Include="Repositories\SphinxSearch.cs" />
     <Compile Include="SearchResult.cs" />
-    <Compile Include="SearchTerm.cs" />
+    <Compile Include="SearchParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

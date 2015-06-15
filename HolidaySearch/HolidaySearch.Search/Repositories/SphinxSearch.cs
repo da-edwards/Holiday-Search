@@ -57,19 +57,27 @@ namespace HolidaySearch.Search.Repositories
             {
                 searchQuery += (firstClause ? string.Empty : " AND ") + "MATCH('";
 
-                var addSpace = false;   // do we want to add a space to the next search parameter
-
-                // Accomodation name
-                if (!string.IsNullOrEmpty(searchParameters.Accomodation))
+                // One search box mode
+                if (searchParameters.UseCombinedSearchFields)
                 {
-                    searchQuery += "@accomodation_name " + searchParameters.Accomodation;
-                    addSpace = true;
+                    searchQuery += string.Join(" ", searchParameters.CombinedSearchFields).Trim();
                 }
-
-                // Location name
-                if (!string.IsNullOrEmpty(searchParameters.Location))
+                else // Multiple search box mode
                 {
-                    searchQuery += (addSpace ? " " : string.Empty) + "@location_name " + searchParameters.Location;
+                    var addSpace = false;   // do we want to add a space to the next search parameter
+
+                    // Accomodation name
+                    if (!string.IsNullOrEmpty(searchParameters.Accomodation))
+                    {
+                        searchQuery += "@accomodation_name " + searchParameters.Accomodation;
+                        addSpace = true;
+                    }
+
+                    // Location name
+                    if (!string.IsNullOrEmpty(searchParameters.Location))
+                    {
+                        searchQuery += (addSpace ? " " : string.Empty) + "@location_name " + searchParameters.Location;
+                    }
                 }
 
                 searchQuery += "')";

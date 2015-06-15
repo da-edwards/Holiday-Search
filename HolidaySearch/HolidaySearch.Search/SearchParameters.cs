@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace HolidaySearch.Search
 {
+    /// <summary>
+    /// Search parameters
+    /// </summary>
     public class SearchParameters
     {
         public string Accomodation { get; set; }
 
-        public IList<string> AllSearchFields
+        public IList<string> CombinedSearchFields
         {
             get
             {
@@ -25,5 +28,7 @@ namespace HolidaySearch.Search
         public IList<DateTime> Dates { get; set; }
 
         public string Location { get; set; }
+
+        public bool UseCombinedSearchFields { get; set; }
     }
 }

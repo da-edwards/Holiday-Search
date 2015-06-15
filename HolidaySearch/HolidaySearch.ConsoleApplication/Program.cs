@@ -26,7 +26,13 @@ namespace HolidaySearch.ConsoleApplication
 
         static void Main()
         {
-            var searchResults = _searchRepository.Search(new SearchParameters { Dates = new List<DateTime> { DateTime.Now.AddDays(1) } }).ToList();
+            var searchResults = _searchRepository.Search(
+                new SearchParameters
+                {
+                    Accomodation = "dave",
+                    Dates = new List<DateTime> { DateTime.Now.AddDays(1) },
+                    UseCombinedSearchFields = true
+                }).ToList();
 
             if (!searchResults.Any())
             {
