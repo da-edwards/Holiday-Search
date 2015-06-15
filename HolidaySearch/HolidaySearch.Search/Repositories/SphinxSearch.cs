@@ -45,6 +45,21 @@ namespace HolidaySearch.Search.Repositories
             // Add dates
             if (searchParameters.Dates != null && searchParameters.Dates.Any())
             {
+                // If number of nights specified, derive dates
+                if (searchParameters.NumberOfNights.HasValue)
+                {
+                    // Grab first date and clear the rest, just in case
+                    var firstDate = searchParameters.Dates.First().Date;
+                    searchParameters.Dates.Clear();
+                    searchParameters.Dates.Add(firstDate);
+
+                    // Add all other dates
+                    for (int i = 1; i < searchParameters.NumberOfNights.Value; i++)
+                    {
+                        searchParameters.Dates.Add(searchParameters.Dates.First().Date.AddDays(i));
+                    }
+                }
+
                 foreach (var date in searchParameters.Dates)
                 {
                     searchQuery += (firstClause ? string.Empty : " AND ") + "availability = " + DaysSinceMillenium(date);

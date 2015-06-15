@@ -50,27 +50,13 @@ namespace HolidaySearch.Website.Controllers
 
             var resultList = new List<SearchResultViewModel>();
 
-            var dates = new List<DateTime>();
-
-            // Add all dates to the search parameters
-            // TODO: move this in to the search repository
-            if (model.StartDate != default(DateTime))
-            {
-                dates.Add(model.StartDate.Date);    // add the first date
-
-                // Add all other dates
-                for (int i = 1; i < model.Nights; i++)
-                {
-                    dates.Add(model.StartDate.Date.AddDays(i));
-                }
-            }
-
             // Get the search results
             var searchResults = _searchRepository.Search(
                 new SearchParameters
                 {
                     Accomodation = model.SearchTerm,
-                    Dates = dates,
+                    Dates = model.StartDate == default(DateTime) ? null : new List<DateTime> { model.StartDate },
+                    NumberOfNights = model.Nights,
                     UseCombinedSearchFields = true
                 });
 

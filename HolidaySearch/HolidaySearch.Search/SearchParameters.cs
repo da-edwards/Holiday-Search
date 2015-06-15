@@ -31,6 +31,8 @@ namespace HolidaySearch.Search
 
         public byte? MinimumRating { get; set; }
 
+        public short? NumberOfNights { get; set; }
+
         public bool UseCombinedSearchFields { get; set; }
     }
 }
